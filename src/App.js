@@ -83,12 +83,12 @@ onInputChange = (event) => {
 
 onButtonSubmit = () => {
   this.setState({imageUrl: this.state.input})
-  fetch('https://api.clarifai.com/v2/models/face-detection/versions/6dc7e46bc9124c5c8824be4822abe105/outputs', returnClarifaiRequestOptions(this.state.input))
+  fetch("https://api.clarifai.com/v2/models/" + 'face-detection' + "/versions/" + "6dc7e46bc9124c5c8824be4822abe105" + "/outputs", returnClarifaiRequestOptions(this.state.input))
   .then(response => response.json())
   .then(response => {
     console.log('hi', response)})
-  .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
-  .catch(err => console.log(err))
+      .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
+      .catch(err => console.log(err))
 }
 
 onRouteChange = (route) => {
@@ -107,7 +107,7 @@ render() {
         <div className="App">
           <ParticlesBg color="#FFFFFF" num={200} type="cobweb" bg={true} />
           <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
-          { this.state.route === 'home'
+          { route === 'home'
             ? <div>
               <Logo />
               <Rank />
